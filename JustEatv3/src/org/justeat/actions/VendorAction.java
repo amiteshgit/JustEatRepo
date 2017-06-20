@@ -12,7 +12,7 @@ public class VendorAction {
 		System.out.println("I am in execute function");
 
 		VendorService vendorService = new VendorService();
-		//vendorList = vendorService.getVendorList();
+		// vendorList = vendorService.getVendorList();
 		return "success";
 
 	}

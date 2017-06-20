@@ -15,6 +15,7 @@
 <form action="">
          <input type="button" value="Update Menu" onclick="window.location.href='UpdateMenu.jsp';"/><br><br>
          <input type="button" value="View Orders" onclick="window.location.href='viewPendingVendorOrders.jsp';"/><br><br>
+         <input type="button" value="View confirmed orders" onclick="window.location.href='viewConfirmedVendorOrder.jsp';"/>    <br> <br>
 			<input type="button" value="Total sales" onclick="window.location.href='Courses.jsp';"/>    <br> <br>    
     </form> 
 </body>

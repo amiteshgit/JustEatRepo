@@ -1,4 +1,5 @@
 package org.justeat.actions;
+
 import javax.servlet.http.HttpSession;
 //import com.opensymphony.webwork.ServletActionContext;
 import java.util.ArrayList;
@@ -12,12 +13,13 @@ import com.opensymphony.xwork2.Action;
 public class LoginAction implements Action {
 	private String userID;
 	private String xyz;
+
 	public String getXyz() {
 		return xyz;
 	}
 
 	public void setXyz(String xyz) {
-	this.xyz = xyz;
+		this.xyz = xyz;
 	}
 
 	private String password;
@@ -40,27 +42,19 @@ public class LoginAction implements Action {
 	}
 
 	public String execute() {
-		System.out.println("in execute");
-		
-		System.out.println(getXyz());
+
 		LoginService loginService = new LoginService();
 
+		String response = loginService.authenticate(getUserID(), getPassword());
+		HttpSession session = ServletActionContext.getRequest().getSession();
 
-		
-String response =loginService.authenticate(getUserID(), getPassword());
-HttpSession session = ServletActionContext.getRequest().getSession();
+		if (!"LOGIN".equalsIgnoreCase(response)) {
+			session.setAttribute("userId", getUserID());
 
-if(!"LOGIN".equalsIgnoreCase(response) ){
-//session.setAttribute("logined","true");
-session.setAttribute("userId",getUserID());
-
-}
-return response;
-
+		}
+		return response;
 
 	}
-
-
 
 	public String getPassword() {
 		return password;

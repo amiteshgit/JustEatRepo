@@ -77,11 +77,11 @@ public class ViewPendingVendorOrders {
 		
 	}
 
-	public void updateMenu(int vendororderID){
+	public void updateMenu(int vendororderID, int statusID, int time){
 		try{
 		connection = Connectivity.getConnectionInstance();
 
-		queryString2 = "update justeat_vendor_orders set status_id=2 where vendor_order_id="+vendororderID;
+		queryString2 = "update justeat_vendor_orders set status_id="+statusID+",expected_time=decode("+time+",200,expected_time,"+time+") where vendor_order_id="+vendororderID;
 				
 		stmt1 = connection.createStatement();
 

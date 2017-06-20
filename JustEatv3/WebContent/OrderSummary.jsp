@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" 
-	import="java.sql.*"
+	pageEncoding="ISO-8859-1" import="java.sql.*"
 	import="org.justeat.service.OrderConfirmedService"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,8 +13,10 @@
 
 </head>
 <body>
-<%@ include file="Top.jsp" %>   
-<%Integer userid = Integer.parseInt((String)session.getAttribute("userId"));%>
+	<%@ include file="Top.jsp"%>
+	<%
+		Integer userid = Integer.parseInt((String) session.getAttribute("userId"));
+	%>
 
 	<form>
 		<input type="text" name="quantity1">
@@ -45,7 +46,9 @@
 					while (rs.next()) {
 				%>
 				<div data-role="collapsible" id="vendor" name="vendor">
-					<h4><%=rs.getString(1)%>     Status:  <%=rs.getString(2) %></h4>
+					<h4><%=rs.getString(1)%>
+						Status:
+						<%=rs.getString(2)%></h4>
 					<%
 						ResultSet rs1 = null;
 							rs1 = orderConfirmedService.getItemDetails(rs.getInt(3));
@@ -70,8 +73,8 @@
 								<table width="100%">
 									<tr>
 										<td width="60%"><%=rs1.getString(1)%>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-										<td >Quantity : <%=rs1.getInt(2)%></td>
-										<td >Amount : <%=rs1.getInt(3)%></td>
+										<td>Quantity : <%=rs1.getInt(2)%></td>
+										<td>Amount : <%=rs1.getInt(3)%></td>
 
 									</tr>
 								</table>
@@ -88,9 +91,6 @@
 					}
 				%>
 
-				</td>
-				</tr>
-				</table>
 
 			</div>
 	</form>

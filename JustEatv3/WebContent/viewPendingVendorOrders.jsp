@@ -13,8 +13,10 @@
 <script src="ajax.js"></script>
 </head>
 <body>
-<%@ include file="Top.jsp" %> 
-<%Integer userid = Integer.parseInt((String)session.getAttribute("userId"));%>
+	<%@ include file="Top.jsp"%>
+	<%
+		Integer userid = Integer.parseInt((String) session.getAttribute("userId"));
+	%>
 
 	<form>
 		<input type="text" name="quantity1">
@@ -37,8 +39,24 @@
 				<div data-role="collapsible" id="vendor<%=rs.getInt(1)%>"
 					name="vendor<%=rs.getInt(1)%>">
 					<h3>
-						Order ID:
-						<%=rs.getInt(1)%>&nbsp;- &nbsp;<%=rs.getString(2)%>
+						<table>
+							<tr>
+								<td>Order ID:</td>
+
+								<td width="100"><%=rs.getInt(1)%>&nbsp;</td>
+								<td width="20">Customer Name:</td>
+								<td width="1200">&nbsp;<%=rs.getString(2)%></td>
+								<td width="60">Please select expected time of delivery:</td>
+								<td width="40"><select id="<%="time" + rs.getInt(3)%>">
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="20">20</option>
+										<option value="25">25</option>
+								</select></td>
+								<td>mins</td>
+							</tr>
+						</table>
 					</h3>
 
 
@@ -57,7 +75,7 @@
 						<table align="right" width="100%">
 							<tr>
 								<td align="right" width="100%"><a
-									href="javascript:updateStatus('vendor<%=rs.getInt(1)%>','<%=rs.getInt(3)%>')">Update</a></td>
+									href="javascript:updateStatus('vendor<%=rs.getInt(1)%>','<%=rs.getInt(3)%>','<%=2%>')">Confirm</a></td>
 
 							</tr>
 						</table>

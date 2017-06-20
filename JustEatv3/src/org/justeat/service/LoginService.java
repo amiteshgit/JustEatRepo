@@ -33,8 +33,6 @@ public class LoginService {
 
 			if (resultSet.getString("password").equals(password)) {
 
-				System.out.println(resultSet.getString("user_type"));
-
 				if (resultSet.getString("user_type").equals(type))
 
 					return "CUSTOMER";
@@ -53,15 +51,5 @@ public class LoginService {
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

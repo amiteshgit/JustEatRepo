@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" 
-	import="java.sql.*"
+	pageEncoding="ISO-8859-1" import="java.sql.*"
 	import="org.justeat.service.CustomerOrders"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,8 +13,10 @@
 
 </head>
 <body>
-<%@ include file="Top.jsp" %> 
-<%Integer userid = Integer.parseInt((String)session.getAttribute("userId"));%>
+	<%@ include file="Top.jsp"%>
+	<%
+		Integer userid = Integer.parseInt((String) session.getAttribute("userId"));
+	%>
 
 	<form>
 		<input type="text" name="quantity1">
@@ -28,27 +29,38 @@
 			<div data-role="main" class="ui-content">
 				<h2>Order Summary:</h2>
 				<%
-				CustomerOrders customerOrders = new CustomerOrders();
-				ResultSet rs=customerOrders.getOrderList(userId);
-				while (rs.next()){
+					CustomerOrders customerOrders = new CustomerOrders();
+					ResultSet rs = customerOrders.getOrderList(userid);
+					while (rs.next()) {
 				%>
 				<h3>
 					Order ID:
 					<%=rs.getInt(1)%>
-					</h3>
+				</h3>
 
 				<%
 					ResultSet rs1 = null;
 
-					rs1 = customerOrders.getVendorList(rs.getInt(1));
+						rs1 = customerOrders.getVendorList(rs.getInt(1));
 
-					while (rs1.next()) {
+						while (rs1.next()) {
 				%>
 				<div data-role="collapsible" id="vendor" name="vendor">
-					<h4><%=rs1.getString(1)%>     Status:  <%=rs1.getString(2) %></h4>
+					<h4>
+						<table>
+							<tr>
+								<td>Vendor Name:</td>
+								<td width="600"><%=rs1.getString(1)%></td>
+								<td>Status:</td>
+								<td width="400"><%=rs1.getString(2)%></td>
+								<td>Expected time of delivery:</td>
+								<td><%=rs1.getInt(4)%></td>
+							</tr>
+						</table>
+					</h4>
 					<%
 						ResultSet rs2 = null;
-							rs2 = customerOrders.getItemDetails(rs1.getInt(3));
+								rs2 = customerOrders.getItemDetails(rs1.getInt(3));
 					%>
 
 
@@ -70,8 +82,8 @@
 								<table width="100%">
 									<tr>
 										<td width="60%"><%=rs2.getString(1)%>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-										<td >Quantity : <%=rs2.getInt(2)%></td>
-										<td >Amount : <%=rs2.getInt(3)%></td>
+										<td>Quantity : <%=rs2.getInt(2)%></td>
+										<td>Amount : <%=rs2.getInt(3)%></td>
 
 									</tr>
 								</table>
@@ -89,7 +101,7 @@
 					}
 				%>
 
-		
+
 
 			</div>
 	</form>

@@ -27,7 +27,7 @@ public class OrderService {
 	private String queryString2 = null;
 	private String queryString3 = null;
 
-	public void updateOrder(String vendorID[], String itemID[], String quantity[], String amount[],int userID) {
+	public void updateOrder(String vendorID[], String itemID[], String quantity[], String amount[], int userID) {
 
 		int totalAmount = 0;
 		int vID = 0;
@@ -56,10 +56,9 @@ public class OrderService {
 			resultSet.next();
 			int orders_seq = resultSet.getInt(1);
 			queryString = "insert into JUSTEAT_ORDERS (order_id, amount,user_id) " + "values( " + orders_seq + ", "
-					+ totalAmount + ", " + userID+")";
+					+ totalAmount + ", " + userID + ")";
 			stmt = connection.createStatement();
 			ret = stmt.executeUpdate(queryString);
-			System.out.println("inserted in orders");
 
 			Iterator itr = vendorSet.iterator();
 			while (itr.hasNext()) {
@@ -87,8 +86,6 @@ public class OrderService {
 								+ " values(" + "justeat_order_desc_s.nextval, " + iID + ", " + vendor_seq + ", " + quant
 								+ ", " + amt + ")";
 
-						System.out.println(queryString1);
-
 						stmt1 = connection.createStatement();
 						ret = stmt.executeUpdate(queryString1);
 					}
@@ -97,7 +94,7 @@ public class OrderService {
 
 		} catch (Exception sqle) {
 			sqle.printStackTrace();
-			System.out.println("Unable to authenticate" + sqle);
+			System.out.println("Unable to add orders" + sqle);
 		}
 
 	}

@@ -15,7 +15,7 @@ public class MenuService {
 	private String queryString = null;
 
 	public ResultSet getMenuList(String vendorName) {
-		
+
 		try {
 
 			connection = Connectivity.getConnectionInstance();
@@ -26,7 +26,6 @@ public class MenuService {
 			resultSet = pstmt.executeQuery();
 			return resultSet;
 
-			
 		} catch (Exception sqle) {
 			sqle.printStackTrace();
 			System.out.println("Unable to fetch menu list" + sqle);
