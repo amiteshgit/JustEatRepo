@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+   <package name="helloworld" extends="struts-default">
+     
+      <action name="hello" 
+            class="org.justeat.actions.HelloWorldAction" 
+            method="execute">
+            <result name="success">/HelloWorld.jsp</result>
+      </action>
+   </package>
+   
+   <package name="loginAction" namespace="/" extends="struts-default">
+     
+      <action name="login" 
+            class="org.justeat.actions.LoginAction" 
+            method="execute">
+                
+            <result name="CUSTOMER">/customerDashboard.jsp</result>
+            <result name="LOGIN">/SignupAndLogin.jsp</result>
+            <result name="VENDOR">/Iamvendor.jsp</result>
+      </action>
+      
+      
+   </package>
+      <package name="VendorAction" namespace="/" extends="struts-default">
+     
+      <action name="UpdateMenu" 
+            class="org.justeat.actions.UpdateMenuAction" 
+            method="execute">
+                
+            
+            <result name="success">/Iamvendor.jsp</result>
+      </action>
+   </package>
+   
+   
+   <package name="SignupAction" namespace="/" extends="struts-default">
+     
+      <action name="signup" 
+            class="org.justeat.actions.SignupAction" 
+            method="execute">
+                
+            <result name="SUCCESS">/Menu.jsp</result>
+            
+      </action>
+      
+      
+   </package>
+   
+   
+   
+   
+   
+</struts>
