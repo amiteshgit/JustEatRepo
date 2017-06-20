@@ -30,7 +30,7 @@
 				<h2>Order Summary:</h2>
 				<%
 					ViewPendingVendorOrders viewPendingVendorOrders = new ViewPendingVendorOrders();
-					ResultSet rs = viewPendingVendorOrders.getOrderList((int)session.getAttribute("userId"), 1);
+					ResultSet rs = viewPendingVendorOrders.getOrderList(userid, 1);
 
 					while (rs.next()) {
 				%>
