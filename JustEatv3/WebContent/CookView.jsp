@@ -61,13 +61,16 @@
 			<div id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li class="sidebar-brand"><a href="#"> Just Eat </a></li>
-					<li style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a href="ChooseMenu.jsp">Choose Your Meal</a></li>
-					<li	style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a href="viewCustomerOrders.jsp">View Orders</a></li>
-					<li><a href="#">View Vendor's Orders</a></li>
-					<li><a href="#">Update Menu</a></li>
-					<li><a href="#">View Confirmed Orders</a></li>
-					<li><a href="#">Total Sales</a></li>
-					<li style="text-decoration: none;color: #fff;background: rgba(255,255,255,0.2);"><%@ include file="Top.jsp" %></li>
+					<li	style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a href="viewPendingVendorOrders.jsp">View Orders</a></li>
+						<li
+						style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a
+						href="UpdateMenu.jsp">Add New item</a></li>
+						<li
+						style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a
+						href="EditMenu.jsp">View/Edit Menu</a></li>
+					<li	style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a href="viewConfirmedVendorOrder.jsp">View Packed orders</a></li>
+					<li	style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a href="CookView.jsp">Chef de' Kitchen</a></li>
+					<li style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><%@ include file="Top.jsp"%></li>
 					<li><a href="#">Contact Us</a></li>
 				</ul>
 			</div>

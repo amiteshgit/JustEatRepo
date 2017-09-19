@@ -72,6 +72,7 @@
 					<li
 						style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a
 						href="viewConfirmedVendorOrder.jsp">View Packed orders</a></li>
+						<li	style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><a href="CookView.jsp">Chef de' Kitchen</a></li>
 					<li
 						style="text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.2);"><%@ include
 							file="Top.jsp"%></li>

@@ -61,10 +61,6 @@
 				<li class="sidebar-brand"><a href="#"> Just Eat </a></li>
 				<li style="text-decoration: none;color: #fff;background: rgba(255,255,255,0.2);"><a href="ChooseMenu.jsp">Choose Your Meal</a></li>
 				<li style="text-decoration: none;color: #fff;background: rgba(255,255,255,0.2);"><a href="viewCustomerOrders.jsp">View Orders</a></li>
-				<li><a href="#">View Vendor's Orders</a></li>
-				<li><a href="#">Update Menu</a></li>
-				<li><a href="#">View Confirmed Orders</a></li>
-				<li><a href="#">Total Sales</a></li>
 				<li style="text-decoration: none;color: #fff;background: rgba(255,255,255,0.2);"><%@ include file="Top.jsp" %></li>
 				<li><a href="#">Contact Us</a></li>
 			</ul>
