@@ -40,7 +40,7 @@ public class SignupService {
 			stmt = connection.createStatement();
 
 			int ret = stmt.executeUpdate(queryString);
-
+			
 			if (usertype.equalsIgnoreCase("VENDOR"))
 
 			{
@@ -51,9 +51,9 @@ public class SignupService {
 				stmt1 = connection.createStatement();
 
 				int ret1 = stmt1.executeUpdate(queryString1);
-
+				
 			}
-
+			
 			return "SUCCESS";
 
 		} catch (Exception sqle) {

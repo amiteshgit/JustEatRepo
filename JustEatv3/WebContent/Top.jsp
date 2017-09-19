@@ -20,10 +20,6 @@
 		response.sendRedirect("logout.jsp");
 	}
 %>
+<a href="logout.jsp">Logout</a>
 
-<table style="display: block; width: 100%">
-	<tr>
-		<td style="display: block; width: 100%"><a href="logout.jsp">Logout</a></td>
-	</tr>
-</table>
 

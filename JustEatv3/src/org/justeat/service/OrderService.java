@@ -1,10 +1,13 @@
 package org.justeat.service;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Set;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,10 +56,11 @@ public class OrderService {
 			queryString0 = "select justeat_orders_s.nextval from dual";
 			stmt0 = connection.createStatement();
 			resultSet = stmt0.executeQuery(queryString0);
+
 			resultSet.next();
 			int orders_seq = resultSet.getInt(1);
-			queryString = "insert into JUSTEAT_ORDERS (order_id, amount,user_id) " + "values( " + orders_seq + ", "
-					+ totalAmount + ", " + userID + ")";
+			queryString = "insert into JUSTEAT_ORDERS (order_id, amount,user_id,order_time) " + "values( " + orders_seq
+					+ ", " + totalAmount + ", " + userID + ",sysdate)";
 			stmt = connection.createStatement();
 			ret = stmt.executeUpdate(queryString);
 
@@ -66,6 +70,7 @@ public class OrderService {
 				queryString2 = "select justeat_vendor_order_s.nextval from dual";
 				stmt2 = connection.createStatement();
 				resultSet2 = stmt2.executeQuery(queryString2);
+
 				resultSet2.next();
 				vendor_seq = resultSet2.getInt(1);
 
@@ -82,15 +87,19 @@ public class OrderService {
 					amt = Integer.parseInt(amount[j]);
 					if (vendor_id == vID) {
 
-						queryString1 = "insert into justeat_order_desc (order_desc_id,item_id,vendor_order_id,quantity,amount) "
+						queryString1 = "insert into justeat_order_desc (order_desc_id,item_id,vendor_order_id,quantity,amount,status_id) "
 								+ " values(" + "justeat_order_desc_s.nextval, " + iID + ", " + vendor_seq + ", " + quant
-								+ ", " + amt + ")";
+								+ ", " + amt + ",1)";
 
 						stmt1 = connection.createStatement();
-						ret = stmt.executeUpdate(queryString1);
+						ret = stmt1.executeUpdate(queryString1);
 					}
 				}
 			}
+
+			CallableStatement cStmt = connection.prepareCall("{call calculation_engine(?)}");
+			cStmt.setInt(1, orders_seq);
+			cStmt.execute();
 
 		} catch (Exception sqle) {
 			sqle.printStackTrace();

@@ -26,7 +26,7 @@ public class VendorService {
 			pstmt = connection.prepareStatement(queryString);
 
 			resultSet = pstmt.executeQuery();
-
+			
 			return resultSet;
 
 		} catch (Exception sqle) {

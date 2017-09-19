@@ -1,10 +1,32 @@
 package org.justeat.actions;
 
+
 import org.justeat.service.UpdateMenuService;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
+
 
 public class UpdateMenuAction {
 
 	private String itemName;
+	private int oneShotQuantity;
+	private int oneShotTime;
+
+	public int getOneShotQuantity() {
+		return oneShotQuantity;
+	}
+
+	public void setOneShotQuantity(int oneShotQuantity) {
+		this.oneShotQuantity = oneShotQuantity;
+	}
+
+	public int getOneShotTime() {
+		return oneShotTime;
+	}
+
+	public void setOneShotTime(int oneShotTime) {
+		this.oneShotTime = oneShotTime;
+	}
 
 	public int getPrice() {
 		return price;
@@ -22,11 +44,11 @@ public class UpdateMenuAction {
 		this.price = price;
 	}
 
-	public String getAvailability() {
+	public int getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(String availability) {
+	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
 
@@ -39,14 +61,17 @@ public class UpdateMenuAction {
 	}
 
 	private int price;
-	private String availability;
+	private int availability;
 	private int vendorID;
 
 	public String execute() {
 
 		UpdateMenuService updateMenuService = new UpdateMenuService();
-
-		updateMenuService.updateMenu(getItemName(), getPrice(), getAvailability(), getVendorID());
+		HttpSession session=ServletActionContext.getRequest().getSession();
+		
+		Integer userid = Integer.parseInt((String)session.getAttribute("userId"));
+		setVendorID(userid);
+		updateMenuService.updateMenu(getItemName(), getPrice(), getAvailability(), getVendorID(), getOneShotQuantity(), getOneShotTime());
 		return "success";
 
 	}

@@ -30,12 +30,18 @@ public class LoginService {
 			resultSet.next();
 
 			String type = "CUSTOMER";
+			
+			String admin_type="ADMIN";
 
 			if (resultSet.getString("password").equals(password)) {
 
 				if (resultSet.getString("user_type").equals(type))
 
 					return "CUSTOMER";
+				
+				if (resultSet.getString("user_type").equals(admin_type))
+					
+					return "ADMIN";
 
 				else
 					return "VENDOR";

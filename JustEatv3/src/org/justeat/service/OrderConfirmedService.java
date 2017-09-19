@@ -3,7 +3,7 @@ package org.justeat.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+
 
 import org.justeat.util.Connectivity;
 
@@ -53,6 +53,7 @@ public class OrderConfirmedService {
 			queryString = "select max(jo.order_id) from justeat_orders jo where jo.user_id=" + userID;
 			pstmt = connection.prepareStatement(queryString);
 			resultSet = pstmt.executeQuery();
+			
 			resultSet.next();
 			this.orderID = resultSet.getInt(1);
 			/*
@@ -61,8 +62,10 @@ public class OrderConfirmedService {
 			queryString1 = "select full_name from justeat_users where user_id=" + userID;
 			pstmt1 = connection.prepareStatement(queryString1);
 			resultSet1 = pstmt1.executeQuery();
+			
 			resultSet1.next();
 			this.userName = resultSet1.getString(1);
+			
 
 		} catch (Exception sqle) {
 			sqle.printStackTrace();
@@ -80,11 +83,12 @@ public class OrderConfirmedService {
 			/*
 			 * get list of all vendor for this order
 			 */
-			queryString2 = "select jv.vendor_name,js.status_meaning,jv.vendor_id from JUSTEAT_VENDOR_ORDERS jvo, JUSTEAT_VENDORS jv, JUSTEAT_STATUS js where  js.status_id=jvo.status_id and jvo.vendor_id=jv.VENDOR_ID and  jvo.order_id="
+			queryString2 = "select jv.vendor_name,js.status_meaning,jv.vendor_id,to_char(jvo.expected_time,'hh24:mi:ss') from JUSTEAT_VENDOR_ORDERS jvo, JUSTEAT_VENDORS jv, JUSTEAT_STATUS js where  js.status_id=jvo.status_id and jvo.vendor_id=jv.VENDOR_ID and  jvo.order_id="
 					+ orderID;
 
 			pstmt2 = connection.prepareStatement(queryString2);
 			resultSet2 = pstmt2.executeQuery();
+		
 			return resultSet2;
 
 		} catch (Exception sqle) {
@@ -111,6 +115,7 @@ public class OrderConfirmedService {
 					+ " and jvo.vendor_id=" + vendorID + " and jo.order_id=" + this.orderID;
 			pstmt3 = connection.prepareStatement(queryString3);
 			resultSet3 = pstmt3.executeQuery();
+			
 			return resultSet3;
 
 		} catch (Exception sqle) {

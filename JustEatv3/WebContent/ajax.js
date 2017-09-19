@@ -230,13 +230,10 @@ function center(id, width, zindex, adjust) {
 }
 
 function updateStatus(id, vendorOrderId, statusID) {
+	
 	var url = "UpdateStatusProc.jsp";
-	var time
-	if (statusID == 2) {
-		time = document.getElementById("time" + vendorOrderId).value;
-	} else {
-		time = "200";
-	}
+	var time=200;
+
 
 	var params = "vendorOrderId=" + vendorOrderId + "&statusID=" + statusID
 			+ "&time=" + time;
