@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 import org.apache.struts2.ServletActionContext;
+import org.justeat.beans.LoginBean;
 import org.justeat.beans.VendorBeans;
 import org.justeat.service.LoginService;
 
@@ -12,18 +13,17 @@ import com.opensymphony.xwork2.Action;
 
 public class LoginAction implements Action {
 	private String userID;
-	private String xyz;
-
-	public String getXyz() {
-		return xyz;
-	}
-
-	public void setXyz(String xyz) {
-		this.xyz = xyz;
-	}
+	
 
 	private String password;
-	private ArrayList<VendorBeans> vendorList = new ArrayList<VendorBeans>();
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getUserID() {
 		return userID;
@@ -33,35 +33,21 @@ public class LoginAction implements Action {
 		this.userID = userID;
 	}
 
-	public ArrayList<VendorBeans> getVendorList() {
-		return vendorList;
-	}
-
-	public void setVendorList(ArrayList<VendorBeans> vendorList) {
-		this.vendorList = vendorList;
-	}
-
 	public String execute() {
 
 		LoginService loginService = new LoginService();
+		LoginBean loginBean = new LoginBean();
 
-		String response = loginService.authenticate(getUserID(), getPassword());
+		loginBean = loginService.authenticate(getUserID(), getPassword());
+		System.out.println("user type printing: "+loginBean.getUserType());
 		HttpSession session = ServletActionContext.getRequest().getSession();
-
-		if (!"LOGIN".equalsIgnoreCase(response)) {
-			session.setAttribute("userId", getUserID());
+		
+		if (!"LOGIN".equalsIgnoreCase(loginBean.getUserType())) {
+			session.setAttribute("userId", loginBean.getUserID());
 
 		}
-		return response;
+		return loginBean.getUserType();
 
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 }
