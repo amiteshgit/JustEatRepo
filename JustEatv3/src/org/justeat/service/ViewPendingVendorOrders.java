@@ -37,7 +37,7 @@ public class ViewPendingVendorOrders {
 					+ " from JUSTEAT_ORDERS jo, JUSTEAT_USERS ju,JUSTEAT_VENDOR_ORDERS jvo, justeat_vendors jv, justeat_users ju1 "
 					+ " where jo.user_id=ju.user_id " + " and jo.order_id=jvo.order_id " + " and jvo.STATUS_ID="
 					+ statusID + " and jvo.vendor_id=jv.vendor_id and jv.user_id=ju1.user_id and ju1.user_id=" + userID;
-			System.out.println(queryString);
+			
 
 			pstmt = connection.prepareStatement(queryString);
 			resultSet = pstmt.executeQuery();
@@ -104,7 +104,7 @@ public class ViewPendingVendorOrders {
 
 	}
 
-	public ResultSet getListForCook(int vendorID) {
+	public ResultSet getListForCook(int userID) {
 
 		try {
 
@@ -113,9 +113,9 @@ public class ViewPendingVendorOrders {
 			/*
 			 * g
 			 */
-			queryString4 = "select jm.item_name, sum(jod.quantity) from justeat_menu jm,justeat_vendor_orders jvo,justeat_order_desc jod"
+			queryString4 = "select jm.item_name, sum(jod.quantity) from justeat_menu jm,justeat_vendor_orders jvo,justeat_order_desc jod, justeat_vendors jv, justeat_users ju"
 					+ " where jvo.VENDOR_ORDER_ID=jod.VENDOR_ORDER_ID" + " and jm.ITEM_ID=jod.ITEM_ID"
-					+ " and jod.STATUS_ID=1" + " and jvo.VENDOR_ID=" + vendorID + " group by jm.item_name";
+					+ " and jod.STATUS_ID=1" + " and jvo.VENDOR_ID=jv.vendor_id and jv.user_id=ju.user_id and ju.user_id=" + userID + " group by jm.item_name";
 			System.out.println(queryString4);
 			pstmt2 = connection.prepareStatement(queryString4);
 			resultSet2 = pstmt2.executeQuery();

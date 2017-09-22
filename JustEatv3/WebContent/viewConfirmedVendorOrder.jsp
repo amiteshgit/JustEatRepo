@@ -84,7 +84,7 @@
 
 						<%
 							int userid = Integer.parseInt((String) session.getAttribute("userId"));
-							System.out.println("in viewCustomerOrdersNew.jsp----userid=" + userid);
+							
 							ViewPendingVendorOrders viewPendingVendorOrders = new ViewPendingVendorOrders();
 							ResultSet rs = viewPendingVendorOrders.getOrderList(userid, 2);
 							int counter1 = 0;
