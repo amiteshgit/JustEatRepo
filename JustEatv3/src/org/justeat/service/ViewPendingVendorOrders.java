@@ -24,7 +24,7 @@ public class ViewPendingVendorOrders {
 	private String queryString3 = null;
 	Statement stmt2 = null;
 
-	public ResultSet getOrderList(int vendorID, int statusID) {
+	public ResultSet getOrderList(int userID, int statusID) {
 
 		try {
 
@@ -34,9 +34,10 @@ public class ViewPendingVendorOrders {
 			 * get list of all orders for this vendor
 			 */
 			queryString = "select jo.order_id,ju.full_name, jvo.VENDOR_ORDER_ID "
-					+ " from JUSTEAT_ORDERS jo, JUSTEAT_USERS ju,JUSTEAT_VENDOR_ORDERS jvo "
+					+ " from JUSTEAT_ORDERS jo, JUSTEAT_USERS ju,JUSTEAT_VENDOR_ORDERS jvo, justeat_vendors jv, justeat_users ju1 "
 					+ " where jo.user_id=ju.user_id " + " and jo.order_id=jvo.order_id " + " and jvo.STATUS_ID="
-					+ statusID + " and jvo.vendor_id=" + vendorID;
+					+ statusID + " and jvo.vendor_id=jv.vendor_id and jv.user_id=ju1.user_id and ju1.user_id=" + userID;
+			System.out.println(queryString);
 
 			pstmt = connection.prepareStatement(queryString);
 			resultSet = pstmt.executeQuery();

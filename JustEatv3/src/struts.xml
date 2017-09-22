@@ -57,7 +57,7 @@
             class="org.justeat.actions.SignupAction" 
             method="execute">
                 
-            <result name="SUCCESS">/Menu.jsp</result>
+            <result name="SUCCESS">/ChooseMenu.jsp</result>
             
       </action>
       

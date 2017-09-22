@@ -25,7 +25,7 @@ public class EditMenuService {
 
 			connection = Connectivity.getConnectionInstance();
 
-			queryString = "select jm.item_name,jm.price,ja.DESCRIPTION,jm.ONE_SHOT_QUANTITY,jm.ONE_SHOT_TIME,jm.ITEM_ID,jm.AVAILABILITY_ID from JUSTEAT_vendors jv,justeat_menu jm,JUSTEAT_AVAILABILITY ja where jv.vendor_id=jm.vendor_id and jm.AVAILABILITY_ID=ja.AVAILABILITY_ID and jv.vendor_id="
+			queryString = "select jm.item_name,jm.price,ja.DESCRIPTION,jm.ONE_SHOT_QUANTITY,jm.ONE_SHOT_TIME,jm.ITEM_ID,jm.AVAILABILITY_ID from JUSTEAT_vendors jv,justeat_menu jm,JUSTEAT_AVAILABILITY ja, justeat_users ju where jv.vendor_id=jm.vendor_id and jm.AVAILABILITY_ID=ja.AVAILABILITY_ID and jv.user_id=ju.user_id and ju.user_id="
 					+ userid;
 			pstmt = connection.prepareStatement(queryString);
 

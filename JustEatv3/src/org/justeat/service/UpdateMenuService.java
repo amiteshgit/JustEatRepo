@@ -15,12 +15,12 @@ public class UpdateMenuService {
 	Statement stmt = null;
 	PreparedStatement pstmt1 = null;
 
-	public void updateMenu(String itemName, int price, int availability, int vendorID, int oneShotQuantity, int oneShotTime) {
+	public void updateMenu(String itemName, int price, int availability, int userID, int oneShotQuantity, int oneShotTime) {
 		try {
 			connection = Connectivity.getConnectionInstance();
 
 			queryString = "Insert into justeat_menu (ITEM_ID,ITEM_NAME,VENDOR_ID,AVAILABILITY_ID,PRICE,ONE_SHOT_QUANTITY,ONE_SHOT_TIME) " + "values ("
-					+ "justeat_menu_s.nextval," + "'" + itemName + "'," + vendorID + "," + availability+"," + price +","+oneShotQuantity+","+oneShotTime+ ")";
+					+ "justeat_menu_s.nextval," + "'" + itemName + "'," + "(select vendor_id from justeat_vendors where user_id="+userID+")," + availability+"," + price +","+oneShotQuantity+","+oneShotTime+ ")";
 
 			stmt = connection.createStatement();
 

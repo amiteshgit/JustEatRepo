@@ -52,17 +52,18 @@ public class UpdateMenuAction {
 		this.availability = availability;
 	}
 
-	public int getVendorID() {
-		return vendorID;
-	}
-
-	public void setVendorID(int vendorID) {
-		this.vendorID = vendorID;
-	}
 
 	private int price;
 	private int availability;
-	private int vendorID;
+	private int userID;
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 
 	public String execute() {
 
@@ -70,8 +71,8 @@ public class UpdateMenuAction {
 		HttpSession session=ServletActionContext.getRequest().getSession();
 		
 		Integer userid = Integer.parseInt((String)session.getAttribute("userId"));
-		setVendorID(userid);
-		updateMenuService.updateMenu(getItemName(), getPrice(), getAvailability(), getVendorID(), getOneShotQuantity(), getOneShotTime());
+		setUserID(userid);
+		updateMenuService.updateMenu(getItemName(), getPrice(), getAvailability(), getUserID(), getOneShotQuantity(), getOneShotTime());
 		return "success";
 
 	}

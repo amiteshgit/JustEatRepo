@@ -40,11 +40,12 @@ public class VendorService {
 	public ResultSet getMenuList(int vendorID) {
 
 		try {
-
+			
 			connection = Connectivity.getConnectionInstance();
 
 			queryString = "select jm.item_name item,jm.item_id , jm.price from JUSTEAT_vendors jv, justeat_menu jm "
 					+ " where jv.vendor_id=jm.vendor_id " + "and jv.vendor_id=" + vendorID;
+			
 
 			pstmt1 = connection.prepareStatement(queryString);
 

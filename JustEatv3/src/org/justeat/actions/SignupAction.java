@@ -4,10 +4,30 @@ import org.justeat.service.SignupService;
 
 public class SignupAction {
 
+	private String firstName;
+	private String lastName;
 	private String fullname;
+
+
 	private String emailID;
 	private String password;
 	private String usertype;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 	public String getUsertype() {
 		return usertype;
@@ -44,10 +64,13 @@ public class SignupAction {
 	public String execute() {
 
 		SignupService signupService = new SignupService();
+		
+		setFullname(getFirstName()+" "+getLastName());
+		setUsertype("CUSTOMER");
 
-		String response1 = signupService.signup(getFullname(), getEmailID(), getUsertype(), getPassword());
+		String response = signupService.signup(getFullname(), getEmailID(), getUsertype(), getPassword());
 
-		return response1;
+		return response;
 
 	}
 }
